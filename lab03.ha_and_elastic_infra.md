@@ -1,3 +1,21 @@
+@component('mail::buttons', [
+    'buttons' => [
+        [
+            'url' => 'https://wa.me/?text=' . urlencode('Whatsapp text'),
+            'slot' => 'WhatsApp',
+            'color' => 'blue' // This is the default
+        ],[
+            'url' => 'https://t.me/share/url?text=' . urlencode('telegram text'),
+            'slot' => 'Telegram',
+            'color' => 'green'
+        ],[
+            'url' => 'https://twitter.com/intent/tweet?text=' . urlencode('Twitter text'),
+            'slot' => 'Twitter',
+            'color' => 'red'
+        ]
+    ]
+])
+@endcomponent
 
 ## 실습 3: 아키텍처 확장 및 로드 밸런싱
 
