@@ -40,24 +40,24 @@
 
 이 과제에서는 기존의 _Web Server 1_ 에서 AMI를 생성합니다. 이렇게 하면 부팅 디스크의 콘텐츠가 저장되므로 동일한 콘텐츠를 사용하여 새 인스턴스를 시작할 수 있습니다.
 
-5. [5]**AWS Management Console**의 <span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **EC2**를 클릭합니다.
+1. **AWS Management Console**의 <span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **EC2**를 클릭합니다.
 
-6. [6]왼쪽 탐색 창에서 **Instances**를 클릭합니다.
+2. 왼쪽 탐색 창에서 **Instances**를 클릭합니다.
 
 먼저 인스턴스가 실행 중인지 확인합니다.
 
-7. [7]**Web Server 1**의 **Status Checks**에 _2/2 checks passed_ 가 표시될 때까지 기다립니다. 새로 고침 아이콘 <i class="fas fa-sync"></i>을 클릭하여 업데이트합니다.
+3. **Web Server 1**의 **Status Checks**에 _2/2 checks passed_ 가 표시될 때까지 기다립니다. 새로 고침 아이콘 <i class="fas fa-sync"></i>을 클릭하여 업데이트합니다.
 
 이제 이 인스턴스를 기반으로 AMI를 생성합니다.
 
-8. [8]<i class="far fa-check-square"></i> **Web Server 1**을 선택합니다.
+4. <i class="far fa-check-square"></i> **Web Server 1**을 선택합니다.
 
-9. [9]<span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Actions <i class="fas fa-angle-down"></i></span> 메뉴에서 **Image and templates** &gt; **Create Image**를 클릭하고 다음을 구성합니다.
+5. <span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Actions <i class="fas fa-angle-down"></i></span> 메뉴에서 **Image and templates** &gt; **Create Image**를 클릭하고 다음을 구성합니다.
 
 - **Image name**: `WebServerAMI`
 - **Image description**: `Lab AMI for Web Server`
 
-10. [10]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Image</span>를 클릭합니다.
+6. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Image</span>를 클릭합니다.
 
 이 AMI는 실습 후반부에서 Auto Scaling 그룹을 시작할 때 사용합니다.
 
@@ -65,13 +65,13 @@
 
 이 과제에서는 여러 EC2 인스턴스 및 가용 영역에 걸쳐 트래픽 균형을 조정할 수 있는 로드 밸런서를 생성합니다.
 
-11. [11]왼쪽 탐색 창에서 **Load Balancers**를 클릭합니다.
+7. 왼쪽 탐색 창에서 **Load Balancers**를 클릭합니다.
 
-12. [12]<span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Load Balancer</span>를 클릭합니다.
+8. <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Load Balancer</span>를 클릭합니다.
 
 여러 유형의 로드 밸런서가 표시됩니다. 이 과제에서는 요청 수준(계층 7)에서 작동하는 _Application Load Balancer_ 를 사용하여 요청 내용에 따라 트래픽을 대상(EC2 인스턴스, 컨테이너, IP 주소 및 Lambda 함수)으로 라우팅합니다. 자세한 내용은 로드 밸런서 [](https://aws.amazon.com/elasticloadbalancing/features/#compare)비교를 참조하십시오.
 
-13. [13]**Application Load Balancer** 아래에서 <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create</span>를 클릭하고 다음을 구성합니다.
+9. **Application Load Balancer** 아래에서 <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create</span>를 클릭하고 다음을 구성합니다.
 
 - **Name**: `LabELB`
 - **VPC**: _Lab VPC_ (**Availability Zones** 섹션)
@@ -80,29 +80,29 @@
 
 이렇게 하면 로드 밸런서가 여러 가용 영역에서 작동하도록 구성됩니다.
 
-14. [14]<span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Security Settings</span>를 클릭합니다.
+10. <span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Security Settings</span>를 클릭합니다.
 
 <i class="fas fa-comment"></i> _"Improve your load balancer's security."_ 라는 경고는 무시해도 됩니다.
 
-15. [15]<span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Security Groups</span>를 클릭합니다.
+11. <span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Security Groups</span>를 클릭합니다.
 
 HTTP 액세스를 허용하는 _Web Security Group_ 이 이미 생성되어 있습니다.
 
-16. [16]<i class="far fa-check-square"></i> **Web Security Group**을 선택하고 <i class="far fa-square"></i> **default**를 선택 취소합니다.
+12. <i class="far fa-check-square"></i> **Web Security Group**을 선택하고 <i class="far fa-square"></i> **default**를 선택 취소합니다.
 
-17. [17]<span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Routing</span>을 클릭합니다.
+13. <span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Configure Routing</span>을 클릭합니다.
 
 라우팅은 로드 밸런서로 전송되는 요청을 보낼 위치를 구성합니다. Auto Scaling에 사용할 _Target Group_ 을 생성해야 합니다.
 
-18. [18]**Name**에 `LabGroup`을 입력합니다.
+14. **Name**에 `LabGroup`을 입력합니다.
 
-19. [19]<span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Register Targets</span>를 클릭합니다.
+15. <span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Register Targets</span>를 클릭합니다.
 
 실습 후반부에서 Auto Scaling이 자동으로 인스턴스를 대상으로 등록합니다.
 
-20. [20]<span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Review</span>를 클릭합니다.
+16. <span style="background-color:#DEDEDE; font-weight:bold; font-size:90%; color:#444; position:relative; top:-1px; border-radius:5px; border-width:1px; border-style:solid; border-color:#444; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next: Review</span>를 클릭합니다.
 
-21. [21]<span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create</span>을 클릭하고 <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Close</span>를 클릭합니다.
+17. <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create</span>을 클릭하고 <span style="background-color:#257ACF; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; border-radius:5px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Close</span>를 클릭합니다.
 
 로드 밸런서의 상태가 _provisioning_ 으로 표시됩니다. 준비가 될 때까지 기다리지 않아도 됩니다. 다음 과제를 진행하십시오.
 
@@ -112,13 +112,13 @@ HTTP 액세스를 허용하는 _Web Security Group_ 이 이미 생성되어 있�
 
 이 작업에서는 시작 템플릿을 생성합니다.
 
-22. [22]<span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services</span> 메뉴에서 **EC2**를 선택합니다.
+18. <span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services</span> 메뉴에서 **EC2**를 선택합니다.
 
-23. [23]왼쪽 탐색 창의 **Instances** 아래에서 **Launch Templates**를 선택합니다.
+19. 왼쪽 탐색 창의 **Instances** 아래에서 **Launch Templates**를 선택합니다.
 
-24. [24]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create launch template</span>을 선택합니다.
+20. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create launch template</span>을 선택합니다.
 
-25. [25]**Launch template name and description** 섹션에서 다음을 구성합니다.
+21. **Launch template name and description** 섹션에서 다음을 구성합니다.
 
 - **Launch template name:** `Lab-template-NUMBER`
 
@@ -134,24 +134,24 @@ HTTP 액세스를 허용하는 _Web Security Group_ 이 이미 생성되어 있�
 
 AMI는 다양한 버전의 Windows 및 Linux에서 사용할 수 있습니다. 이 실습에서는 _Amazon Linux_ 를 실행하는 인스턴스를 시작합니다.
 
-26. [26]**AMI** 에서 다음을 구성합니다.
+22. **AMI** 에서 다음을 구성합니다.
 
 - `WebServerAMI`를 입력합니다.
 - **WebServerAMI**를 클릭합니다.
 
 Web Server AMI는 _My AMIs_ 아래에 있습니다.
 
-27. [27]**Instance type**에서 _t3.micro_ 를 선택합니다.
+23. **Instance type**에서 _t3.micro_ 를 선택합니다.
 
 인스턴스를 시작할 때 **인스턴스 유형**에 따라 인스턴스에 할당된 하드웨어가 결정됩니다. 각 인스턴스 유형은 서로 다른 컴퓨팅, 메모리, 스토리지 용량을 제공하는데, 이 용량에 따라 서로 다른 **인스턴스 패밀리**로 분류됩니다.
 
-28. [28]**Security groups** 에서 _Web Security Group_ 을 선택합니다.
+24. **Security groups** 에서 _Web Security Group_ 을 선택합니다.
 
 이미 생성되어 있는 _Web Security Group_ 을 사용하도록 시작 템플릿을 구성합니다.
 
-29. [29]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create launch template</span>을 클릭합니다.
+25. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create launch template</span>을 클릭합니다.
 
-30. [30]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">View launch templates</span>를 클릭합니다.
+26. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">View launch templates</span>를 클릭합니다.
 
 ## 과제 4: Auto Scaling 그룹 생성
 
@@ -159,23 +159,23 @@ Amazon EC2 Auto Scaling은 사용자가 정의한 정책, 일정 및 상태 확�
 
 이 작업에서는 Auto Scaling 그룹을 생성합니다.
 
-31. [31]왼쪽 탐색 창의 **Auto Scaling** 아래에서 **Auto Scaling Groups**를 클릭합니다.
+27. 왼쪽 탐색 창의 **Auto Scaling** 아래에서 **Auto Scaling Groups**를 클릭합니다.
 
-32. [32]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create an Auto Scaling group</span>을 클릭하고 다음을 구성합니다.
+28. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create an Auto Scaling group</span>을 클릭하고 다음을 구성합니다.
 
 - **Name:** `Lab Auto Scaling Group`
 - **Launch template:** 작업3에서 생성한 시작 템플릿을 선택합니다.
 - **Version:** 시작 템플릿 버전을 선택합니다.
 - <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span>를 클릭합니다.
 
-33. [33]**Configure settings** 페이지에서 다음과 같이 구성합니다.
+29. **Configure settings** 페이지에서 다음과 같이 구성합니다.
 - **Purchase options and instance types** 섹션에서 **Adhere to launch template** 를 선택합니다.
 - **Network** 섹션에서 다음과 같이 구성합니다.
     - **VPC:** _Lab VPC_
     - **Subnets:** _Private Subnet 1 과 Private Subnet 2_ 를 선택합니다.
     - <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span>를 클릭합니다.
 
-34. [34]**Configure advanced options** 페이지에서 다음을 구성합니다.
+30. **Configure advanced options** 페이지에서 다음을 구성합니다.
 
 - **Load - Balancing - _optional_** 세션에서 다음을 선택합니다.
 
@@ -197,7 +197,7 @@ Amazon EC2 Auto Scaling은 사용자가 정의한 정책, 일정 및 상태 확�
   - **Monitoring:** <i class="far fa-check-square"></i> _Enable group metrics collection within CloudWatch_ 를 선택합니다.
 - <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span>를 클릭합니다.
 
-35. [35]**Configure group size and scaling policies** 페이지에서 다음을 구성합니다.
+31. **Configure group size and scaling policies** 페이지에서 다음을 구성합니다.
 
 - **Desired capacity:** `2`
 - **Minimum capacity:** `2`
@@ -205,7 +205,7 @@ Amazon EC2 Auto Scaling은 사용자가 정의한 정책, 일정 및 상태 확�
 
 이렇게 하면 Auto Scaling에서 인스턴스를 자동으로 추가/제거하여 항상 2~4개의 인스턴스를 계속해서 실행할 수 있습니다.
 
-36. [36]**Scaling policies** 섹션에서 다음을 수행합니다.
+32. **Scaling policies** 섹션에서 다음을 수행합니다.
 
 - <i class="far fa-dot-circle"></i> **Target tracking scaling policy** 를 선택합니다.
 - **Target value**: `60`
@@ -213,43 +213,43 @@ Amazon EC2 Auto Scaling은 사용자가 정의한 정책, 일정 및 상태 확�
 
 이렇게 하면 Auto Scaling에서 모든 인스턴스의 _평균_ CPU 사용률을 _60%_ 로 유지할 수 있습니다. Auto Scaling은 필요에 따라 용량을 자동으로 추가 또는 제거하여 지표를 지정된 대상 값으로 유지하거나 이 값에 가까운 값으로 유지합니다. 로드 패턴 변동으로 인한 지표의 변동에 맞춰 조정합니다.
 
-37. [37]**Add notifications** 페이지에서 <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span> 를 클릭합니다.
+33. **Add notifications** 페이지에서 <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span> 를 클릭합니다.
 
-38. [38]**Add Tags** 페이지에서 태그를 설정합니다.
+34. **Add Tags** 페이지에서 태그를 설정합니다.
 
 태그를 설정하면 Auto Scaling 그룹에 이름으로 태그가 지정되고 Auto Scaling 그룹에서 시작한 EC2 인스턴스에도 표시됩니다. 그러면 어떤 애플리케이션에 어떤 EC2 인스턴스가 연결되어 있는지 더 쉽게 식별할 수 있습니다. 또한 비용 센터 같은 태그를 추가하면 결제 파일에서 애플리케이션 비용을 쉽게 지정할 수도 있습니다.
 
-39. [39]<span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Add tag</span>를 클릭하고 다음을 구성합니다.
+35. <span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Add tag</span>를 클릭하고 다음을 구성합니다.
 
 - **Key:** `Name`
 - **Value:** `Lab Instance`
 - <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Next</span>를 클릭합니다.
 
-40. [40]Auto Scaling 그룹의 세부 정보를 확인한 다음 <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Auto Scaling group</span>을 클릭합니다.
+36. Auto Scaling 그룹의 세부 정보를 확인한 다음 <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Create Auto Scaling group</span>을 클릭합니다.
 
 애플리케이션이 곧 2개의 가용 영역에서 실행될 것이며 Auto Scaling이 인스턴스 또는 가용 영역에서 장애가 발생하는 경우에도 해당 구성을 유지합니다.
 
 이제 Auto Scaling 그룹을 생성했으며 해당 그룹에서 EC2 인스턴스를 시작했는지 확인할 준비가 완료되었습니다.
 
-41. [41]Auto Scaling 그룹을 클릭합니다.
+37. Auto Scaling 그룹을 클릭합니다.
 
 **Group Details**를 검토하여 Auto Scaling 그룹에 대한 정보를 확인합니다.
 
-42. [42]**Activity** 탭을 클릭합니다.
+38. **Activity** 탭을 클릭합니다.
 
 Status 열에는 인스턴스의 현재 상태가 포함됩니다. 인스턴스를 시작하면 상태 열에 _PreInService_ 가 표시됩니다. 인스턴스가 시작되면 상태가 _Successful_ 로 변경됩니다. 새로 고침 버튼을 클릭하여 인스턴스의 현재 상태를 볼 수도 있습니다.<i class="fas fa-sync"></i>
 
-43. [43]**Instance management** 탭을 클릭합니다.
+39. **Instance management** 탭을 클릭합니다.
 
 Auto Scaling 그룹에서 EC2 인스턴스를 시작했으며 해당 인스턴스가 _InService_ 수명 주기 상태에 있음을 알 수 있습니다. Health Status 열에 해당 인스턴스에 대한 EC2 인스턴스 상태 확인 결과가 표시됩니다.
 
-44. [44]**Monitoring** 탭을 클릭합니다. 여기에서 Autoscaling 그룹에 대한 모니터링 관련 정보를 볼 수 있습니다.
+40. **Monitoring** 탭을 클릭합니다. 여기에서 Autoscaling 그룹에 대한 모니터링 관련 정보를 볼 수 있습니다.
 
 ## 과제 5: 로드 밸런싱 작동 확인
 
 이 과제에서는 로드 밸런싱이 올바르게 작동하는지 확인합니다.
 
-45. [45]왼쪽 탐색 창에서 **Instances**를 클릭합니다.
+41. 왼쪽 탐색 창에서 **Instances**를 클릭합니다.
 
 이름이 **Lab Instance**인 새 인스턴스 2개가 표시됩니다. 이 두 인스턴스는 Auto Scaling에 의해 시작되었습니다.
 
@@ -257,29 +257,29 @@ Auto Scaling 그룹에서 EC2 인스턴스를 시작했으며 해당 인스턴�
 
 먼저 새 인스턴스가 상태 확인을 통과했는지 확인합니다.
 
-46. [46]왼쪽 탐색 창에서 **Target Groups**(_Load Balancing_ 섹션)를 클릭합니다.
+42. 왼쪽 탐색 창에서 **Target Groups**(_Load Balancing_ 섹션)를 클릭합니다.
 
-47. [47]**LabGroup**을 클릭합니다.
+43. **LabGroup**을 클릭합니다.
 
-48. [48]**Targets** 탭을 클릭합니다.
+44. **Targets** 탭을 클릭합니다.
 
 이 대상 그룹에는 두 개의 **Lab Instance**가 대상으로 나열되어야 합니다.
 
-49. [49]두 개의 인스턴스 **Status**가 모두 _healthy_ 로 전환될 때까지 기다립니다. 오른쪽 위에서 새로 고침 아이콘 <i class="fas fa-sync"></i>을 클릭하여 업데이트를 확인합니다.
+45. 두 개의 인스턴스 **Status**가 모두 _healthy_ 로 전환될 때까지 기다립니다. 오른쪽 위에서 새로 고침 아이콘 <i class="fas fa-sync"></i>을 클릭하여 업데이트를 확인합니다.
 
 _Healthy_ 는 인스턴스가 로드 밸런서의 상태 확인을 통과했음을 나타냅니다. 즉, 로드 밸런서가 인스턴스로 트래픽을 전송합니다.
 
 이제 로드 밸런서를 통해 Auto Scaling 그룹에 액세스할 수 있습니다.
 
-50. [50]왼쪽 탐색 창에서 **Load Balancers**를 클릭합니다.
+46. 왼쪽 탐색 창에서 **Load Balancers**를 클릭합니다.
 
-51. [51]<i class="far fa-check-square"></i> **LabELB** 를 선택하지 않은 경우 클릭해서 선택합니다.
+47. <i class="far fa-check-square"></i> **LabELB** 를 선택하지 않은 경우 클릭해서 선택합니다.
 
-52. [52]하단 창에서 로드 밸런서의 **DNS 이름**을 복사합니다. "(A Record)"를 생략해야 합니다.
+48. 하단 창에서 로드 밸런서의 **DNS 이름**을 복사합니다. "(A Record)"를 생략해야 합니다.
 
 이름은 _LabELB-1998580470.us-west-2.elb.amazonaws.com_ 과 유사해야 합니다.
 
-53. [53]새 웹 브라우저 탭을 열고 방금 복사한 DNS 이름을 붙여 넣은 다음 Enter 키를 누릅니다.
+49. 새 웹 브라우저 탭을 열고 방금 복사한 DNS 이름을 붙여 넣은 다음 Enter 키를 누릅니다.
 
 애플리케이션이 브라우저에 나타납니다. 이는 로드 밸런서가 요청을 수신하여 EC2 인스턴스 중 하나로 전송한 후 결과를 되돌려 준 것을 말합니다.
 
@@ -287,15 +287,15 @@ _Healthy_ 는 인스턴스가 로드 밸런서의 상태 확인을 통과했음�
 
 인스턴스가 최소 2개, 최대 4개인 Auto Scaling 그룹을 생성했습니다. 최소 크기는 2이고 부하가 전혀 없으므로 현재 2개의 인스턴스가 실행 중입니다. 이제 부하를 늘려 Auto Scaling이 인스턴스를 추가하도록 합니다.
 
-54. [54]곧 다시 돌아올 것이므로 애플리케이션 탭을 닫지 않은 상태에서 AWS Management Console로 돌아갑니다.
+50. 곧 다시 돌아올 것이므로 애플리케이션 탭을 닫지 않은 상태에서 AWS Management Console로 돌아갑니다.
 
-55. [55]<span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **CloudWatch**를 클릭합니다.
+51. <span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **CloudWatch**를 클릭합니다.
 
-56. [56]왼쪽 탐색 창에서 **Alarms**(**ALARM** _아님_)를 클릭합니다.
+52. 왼쪽 탐색 창에서 **Alarms**(**ALARM** _아님_)를 클릭합니다.
 
 두 경보가 표시됩니다. 이러한 경보는 Auto Scaling 그룹에 의해 자동으로 생성되었습니다. 이 두 경보는 2~4개의 인스턴스를 보유해야 하는 제한 범위를 벗어나지 않으면서 자동으로 평균 CPU 부하를 60%에 가깝게 유지합니다.
 
-57. [57]이름에 _AlarmHigh_ 가 포함된 **OK** 경보를 클릭합니다.
+53. 이름에 _AlarmHigh_ 가 포함된 **OK** 경보를 클릭합니다.
 
 <i class="fas fa-comment"></i> **OK**가 표시된 경보가 없으면 1분 정도 기다린 다음 경보 상태가 변경될 때까지 오른쪽 상단의 새로 고침 <i class="fas fa-sync"></i>을 클릭합니다.
 
@@ -303,13 +303,13 @@ _Healthy_ 는 인스턴스가 로드 밸런서의 상태 확인을 통과했음�
 
 이제 CPU 사용률을 높이는 계산을 수행하도록 애플리케이션에 지시합니다.
 
-58. [58]웹 애플리케이션이 있는 브라우저 탭으로 돌아갑니다.
+54. 웹 애플리케이션이 있는 브라우저 탭으로 돌아갑니다.
 
-59. [59]AWS 로고 옆의 **Load Test**를 클릭합니다.
+55. AWS 로고 옆의 **Load Test**를 클릭합니다.
 
 그러면 애플리케이션에서 높은 로드가 생성됩니다. 브라우저 페이지가 자동으로 새로 고쳐지고 Auto Scaling 그룹의 모든 인스턴스에서 로드가 생성됩니다. 이 탭을 닫지 마십시오.
 
-60. [60]**CloudWatch** 콘솔이 있는 브라우저 탭으로 돌아갑니다.
+56. **CloudWatch** 콘솔이 있는 브라우저 탭으로 돌아갑니다.
 
 5분 안에 **AlarmLow** 경보가 **OK** 로 변경되고 **AlarmHigh** 경보 상태가 _In alarm_ 으로 변경됩니다.
 
@@ -317,13 +317,13 @@ _Healthy_ 는 인스턴스가 로드 밸런서의 상태 확인을 통과했음�
 
 CPU 비율 증가를 나타내는 **AlarmHigh** 차트가 표시됩니다. 인스턴스가 3분 이상 60% 선을 넘으면 Auto Scaling이 트리거되어 추가 인스턴스가 추가됩니다.
 
-61. [61]**AlarmHigh** 경보의 상태가 _In alarm_ 상태가 될 때까지 기다립니다.
+57. **AlarmHigh** 경보의 상태가 _In alarm_ 상태가 될 때까지 기다립니다.
 
 이제 시작된 추가 인스턴스를 볼 수 있습니다.
 
-62. [62]<span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **EC2**를 클릭합니다.
+58. <span style="background-color:#232f3e; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Services <i class="fas fa-angle-down"></i></span> 메뉴에서 **EC2**를 클릭합니다.
 
-63. [63]왼쪽 탐색 창에서 **Instances**를 클릭합니다.
+59. 왼쪽 탐색 창에서 **Instances**를 클릭합니다.
 
 **Lab Instance** 레이블이 지정된 3개 이상의 인스턴스가 실행 중인 것으로 표시됩니다. 새 인스턴스는 경보에 대한 응답으로 Auto Scaling에 의해 생성되었습니다.
 
@@ -331,11 +331,11 @@ CPU 비율 증가를 나타내는 **AlarmHigh** 차트가 표시됩니다. 인�
 
 이 과제에서는 _Web Server 1_ 을 종료합니다. 이 인스턴스는 Auto Scaling 그룹에서 사용할 AMI를 생성하는 데 사용되었지만 더 이상 필요하지 않습니다.
 
-64. [64]<i class="far fa-check-square"></i> **Web Server 1**을 선택하고 이 인스턴스만 선택되었는지 확인합니다.
+60. <i class="far fa-check-square"></i> **Web Server 1**을 선택하고 이 인스턴스만 선택되었는지 확인합니다.
 
-65. [65]<span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Instance state <i class="fas fa-angle-down"></i></span> 메뉴에서 **Terminate Instance**를 클릭합니다.
+61. <span style="background-color:white; font-weight:bold; font-size:90%; color:#545b64; position:relative; top:-1px; border-color:#545b64; border-radius:2px; border-width:1px; border-style:solid; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;">Instance state <i class="fas fa-angle-down"></i></span> 메뉴에서 **Terminate Instance**를 클릭합니다.
 
-66. [66]<span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Terminate</span>를 클릭합니다.
+62. <span style="background-color:#ec7211; font-weight:bold; font-size:90%; color:white; position:relative; top:-1px; padding-top:3px; padding-bottom:3px; padding-left:10px; padding-right:10px;white-space: nowrap">Terminate</span>를 클릭합니다.
 
 ## 실습 완료
 
