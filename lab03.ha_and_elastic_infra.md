@@ -1,22 +1,3 @@
-@component('mail::buttons', [
-    'buttons' => [
-        [
-            'url' => 'https://wa.me/?text=' . urlencode('Whatsapp text'),
-            'slot' => 'WhatsApp',
-            'color' => 'blue' // This is the default
-        ],[
-            'url' => 'https://t.me/share/url?text=' . urlencode('telegram text'),
-            'slot' => 'Telegram',
-            'color' => 'green'
-        ],[
-            'url' => 'https://twitter.com/intent/tweet?text=' . urlencode('Twitter text'),
-            'slot' => 'Twitter',
-            'color' => 'red'
-        ]
-    ]
-])
-@endcomponent
-
 ## 실습 3: 아키텍처 확장 및 로드 밸런싱
 
 이 실습에서는 Elastic Load Balancing(ELB)과 Auto Scaling 서비스를 사용하여 인프라를 부하 분산하고 자동 조정하는 과정을 살펴봅니다.
