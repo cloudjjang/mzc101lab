@@ -1,14 +1,3 @@
-- red
-+ green
-! orange
-# gray
-
-
--! Warning !-
-+( Venisons dear isn't it? )+
-!~ Dwarf Shortage ~!
-#=- Stationary Store Moves -=#
-
 
 ## 실습 3: 아키텍처 확장 및 로드 밸런싱
 
