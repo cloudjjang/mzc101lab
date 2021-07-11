@@ -1,3 +1,15 @@
+- red
++ green
+! orange
+# gray
+
+
+-! Warning !-
++( Venisons dear isn't it? )+
+!~ Dwarf Shortage ~!
+#=- Stationary Store Moves -=#
+
+
 ## 실습 3: 아키텍처 확장 및 로드 밸런싱
 
 이 실습에서는 Elastic Load Balancing(ELB)과 Auto Scaling 서비스를 사용하여 인프라를 부하 분산하고 자동 조정하는 과정을 살펴봅니다.
